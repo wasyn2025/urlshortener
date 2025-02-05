@@ -1,0 +1,200 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Overpass", sans-serif;
+
+    --error-clr: rgb(228, 37, 37);
+    --text: #43494D;
+}
+
+.font-overpass-600 {
+    font-weight: 600;
+}
+
+.font-overpass-700 {
+    font-weight: 700;
+}
+
+body {
+    background-color: #0B7FD6;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input,
+button,
+select,
+textarea {
+    font: inherit;
+}
+
+h1 {
+    margin-block: 1.5rem;
+    font-size: 2.5rem;
+    color: #F9F9F9;
+}
+
+.form-input {
+    position: relative;
+    width: 700px;
+    display: flex;
+}
+
+.form-input input {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 5px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border: 1px solid #ddd;
+    outline: 1px solid transparent;
+    color: var(--text);
+}
+
+.form-input button {
+    width: 120px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    color: var(--text);
+    transition: all 300ms ease;
+}
+
+.form-input button:hover {
+    background-color: #25D50C;
+    color: white;
+}
+
+.data-container {
+    background-color: #FBFBFB;
+    height: 400px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    overflow: auto;
+    padding: 2rem;
+    margin-top: 10px;
+}
+
+.empty-data-msg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .4rem;
+}
+
+.empty-msg {
+    color: #C6C6C6;
+    font-size: 1.1rem;
+}
+
+.link-icon {
+    font-size: 6rem;
+    color: #E6E6E6;
+    display: block;
+}
+
+.url {
+    margin-bottom: 1.5rem;
+}
+
+.url .title {
+    font-size: .9rem;
+    color: var(--text);
+    display: flex;
+    gap: .5rem;
+}
+
+.url .title>div {
+    display: flex;
+}
+
+.url .title i {
+    font-size: 1rem;
+    margin-right: .2rem;
+}
+
+.url .shorted-url {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-block: .3rem .5rem;
+}
+
+.url .shorted-url .shorted-url-text {
+    color: #064BE9;
+    font-size: 1.2rem;
+}
+
+.url .shorted-url .delete-btn {
+    font-size: 1.5rem;
+    display: block;
+    text-decoration: none;
+    border-radius: 6px;
+    width: 40px;
+    aspect-ratio: 1/1;
+    border: 1px solid #F02D2D;
+    color: #E40909;
+    display: grid;
+    place-items: center;
+    transition: all 250ms;
+    position: absolute;
+    right: 0;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.url .shorted-url .delete-btn:hover {
+    border: 1px solid none;
+    color: white;
+    background-color: #F02D2D;
+}
+
+.url .full-url {
+    display: block;
+    width: 500px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--text);
+}
+
+.list-empty {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.308);
+    font-size: 1.3rem;
+}
+
+.error-text {
+    color: var(--error-clr) !important;
+}
+
+.flash-error {
+    margin-top: 10px;
+    background-color: rgb(255, 136, 136);
+    padding: 13px 10px;
+    font-size: .9rem;
+    border-radius: 6px;
+    color: rgb(168, 10, 10);
+}
+
+.flash-error > span {
+    display: flex;
+    align-items: center;
+}
+
+.flash-error-icon {
+    position: relative;
+    bottom: 1.5px;
+    scale: 1.5;
+    margin-right: .4rem;
+}
