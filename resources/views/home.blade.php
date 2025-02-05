@@ -27,7 +27,7 @@
         <form class="form-input" action="{{ route('shortener.store') }}" method="POST">
             @csrf
             <input type="text" name='url' placeholder="Place or paste your url here.."
-                value="{{ old('url') }}" autofocus>
+                value="{{ old('url') }}" autofocus autocomplete="off">
             <button type="submit">Short</button>
         </form>
         @error('error')
