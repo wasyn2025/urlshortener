@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Str;
 
-class UrlShortenerController extends Controller
+class ShortenerControler extends Controller
 {
     /**
      * Display a listing of the resource.
