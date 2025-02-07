@@ -40,7 +40,7 @@
 
         <div class="data-container">
             @if ($urls->isNotEmpty())
-                @foreach ($urls as $url)
+                @foreach ($urls->all() as $url)
                     <div class="url">
                         <span class='title'>
                             <div><i class='bx bx-info-circle'></i>Shorted url</div>

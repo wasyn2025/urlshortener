@@ -7,9 +7,11 @@ use App\Models\Url;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class ShortenerControler extends Controller
+class ShortenerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +19,7 @@ class ShortenerControler extends Controller
     public function index()
     {
         return view('home', [
-            'urls' => Url::select('short_url', 'full_url', 'click')->get()
+            'urls' => DB::table('url')->select('short_url', 'full_url', 'click')->get()
         ]);
     }
 
@@ -27,14 +29,14 @@ class ShortenerControler extends Controller
     public function show(?string $url)
     {
         try {
-            $url = Url::select('short_url', 'full_url', 'click')
-                ->where('short_url', $url)
-                ->firstOrFail();
+            $fullUrl = DB::table('url')->select('full_url as url', 'click')
+                    ->where('short_url', $url)
+                    ->firstOrFail();
+                
+            DB::table('url')->where('short_url', $url)->increment('click', 1);
 
-            $url->increment('click');
-
-            return redirect()->away($url->full_url);
-        } catch (ModelNotFoundException|QueryException|Exception $e) {
+            return redirect()->away($fullUrl->url);
+        } catch (ModelNotFoundException | QueryException | Exception $e) {
             return back()->withErrors(['error' => 'Failed to short the url']);
         }
     }
@@ -45,11 +47,13 @@ class ShortenerControler extends Controller
     public function store(ShortUrlRequest $request)
     {
         try {
-            $data = ['short_url' => Str::random(6), 'full_url' => $request->input('url')];
-            Url::create($data);
+            DB::table('url')->insert([
+                'short_url' => Str::random(6),
+                'full_url' => $request->input('url')
+            ]);
 
             return back();
-        } catch (QueryException|Exception $e) {
+        } catch (QueryException | Exception $e) {
             return back()->with(['error' => 'Failed to short url']);
         }
     }
@@ -60,10 +64,10 @@ class ShortenerControler extends Controller
     public function destroy($url)
     {
         try {
-            Url::where('short_url', $url)->firstOrFail()->delete();
+            DB::table('url')->where('short_url', $url)->delete();
 
             return back()->with(['success' => 'Shorted url successfully deleted']);
-        } catch (ModelNotFoundException|QueryException|Exception $e) {
+        } catch (ModelNotFoundException | QueryException | Exception $e) {
             return back()->with(['error' => 'Failed to delete shorted url']);
         }
     }
