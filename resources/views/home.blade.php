@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Url Shortener</title>
+    <title>Shorten your url for free with ShortUrl | ShortUrl free, safe and simple </title>
 
     <!-- Overpass google font link -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,6 +37,14 @@
                 </span>
             </div>
         @enderror
+
+        @session('success')
+            <div class="flash-success">
+                <span>
+                    <i class="bx bxs-check-circle flash-error-icon"></i> {{ $value }}
+                </span>
+            </div>
+        @endsession
 
         <div class="data-container">
             @if ($urls->isNotEmpty())

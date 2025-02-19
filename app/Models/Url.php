@@ -28,4 +28,16 @@ class Url extends Model
      * Current table name
      */
     protected $table = 'url';
+
+    /**
+     * Current database connection used by this model
+     */
+    protected $connection = 'sqlite';
+
+    /**
+     * The model's default attribute values
+     */
+    protected $attributes = [
+        'clicl' => 0
+    ];
 }
